@@ -1,0 +1,5 @@
+---
+- name: enable php-fpm supervisor service
+  template:
+    src: supervisor/php-fpm.conf.j2
+    dest: /etc/supervisor/conf.d/php-fpm.conf

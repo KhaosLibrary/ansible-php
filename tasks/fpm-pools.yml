@@ -1,0 +1,9 @@
+---
+- name: create fpm pool configuration
+  template:
+    dest: /etc/php/7.0/fpm/pool.d/{{ item.name }}.conf
+    src: fpm/conf.d/pool.conf.j2
+  vars:
+    pool: "{{ item }}"
+    config: "{{ item.config }}"
+  with_items: "{{ khaos.php.fpm.pools }}"

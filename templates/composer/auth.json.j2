@@ -1,0 +1,10 @@
+{
+    "http-basic": {
+        {% for repository in basic %}
+            "{{ repository.url }}": {
+                "username": "{{ repository.username }}",
+                "password": "{{ repository.password }}"
+            }
+        {% endfor %}
+    }
+}

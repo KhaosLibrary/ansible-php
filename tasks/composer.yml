@@ -1,0 +1,44 @@
+---
+
+- name: Check if Composer is installed.
+  stat: "path={{ khaos.php.composer.path }}"
+  register: _composer
+
+- name: Download Composer installer.
+  when: not _composer.stat.exists
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/composer-installer.php
+    mode: 0755
+
+- name: Run Composer installer.
+  when: not _composer.stat.exists
+  command: php composer-installer.php
+  args:
+    chdir: /tmp/
+
+- name: Move Composer into globally-accessible location.
+  when: not _composer.stat.exists
+  command: mv /tmp/composer.phar {{ khaos.php.composer.path }}
+  args:
+    creates: khaos.php.composer.path
+
+- name: Update Composer to latest version (if configured).
+  command: php {{ khaos.php.composer.path }} self-update
+  register: composer_update
+  changed_when: "'Updating to version' in composer_update.stdout"
+  when: khaos.php.composer.update
+
+- name: Ensure composer directory exists.
+  file:
+    path: "{{ khaos.php.composer.home.path }}"
+    owner: "{{ khaos.php.composer.home.user }}"
+    group: "{{ khaos.php.composer.home.group }}"
+    state: directory
+
+- name: Add auth.json
+  template:
+    src: composer/auth.json.j2
+    dest: "{{ khaos.php.composer.home.path }}/auth.json"
+  vars:
+    basic: "{{ khaos.php.composer.auth.basic }}"

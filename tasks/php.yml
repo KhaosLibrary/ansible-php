@@ -1,0 +1,11 @@
+---
+
+- name: install php-cli
+  package:
+    name: "{{ khaos.php.package_map['cli'] }}"
+
+- name: install php extensions
+  package:
+    name: "{{ khaos.php.extension_package_map[item] }}"
+    state: present
+  with_items: "{{ khaos.php.extensions }}"

@@ -1,0 +1,14 @@
+---
+
+- name: install php-fpm
+  package:
+    name: "{{ khaos.php.package_map['fpm'] }}"
+
+# Installing php-fpm does not always create this directory so we need to
+# make sure it is present.
+
+- name: ensure php run directory is present
+  file:
+    path: /run/php
+    state: directory
+    mode: 0755
