@@ -21,6 +21,11 @@ khaos:
         path: /var/www/.composer
         user: www-data
         group: www-data
+      auth:
+        # basic:
+        #   - url: repo.example.com
+        #     username: <username>
+        #     password: <password>
     fpm:
       pools:
         - name: www
