@@ -1,7 +1,7 @@
 ---
 
 - name: Check if Composer is installed.
-  stat: "path={{ khaos.php.composer.path }}"
+  stat: "path={{ swinxy.php.composer.path }}"
   register: _composer
 
 - name: Download Composer installer.
@@ -19,27 +19,27 @@
 
 - name: Move Composer into globally-accessible location.
   when: not _composer.stat.exists
-  command: mv /tmp/composer.phar {{ khaos.php.composer.path }}
+  command: mv /tmp/composer.phar {{ swinxy.php.composer.path }}
   args:
-    creates: khaos.php.composer.path
+    creates: swinxy.php.composer.path
 
 - name: Update Composer to latest version (if configured).
-  command: php {{ khaos.php.composer.path }} self-update
+  command: php {{ swinxy.php.composer.path }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
-  when: khaos.php.composer.update
+  when: swinxy.php.composer.update
 
 - name: Ensure composer directory exists.
   file:
-    path: "{{ khaos.php.composer.home.path }}"
-    owner: "{{ khaos.php.composer.home.user }}"
-    group: "{{ khaos.php.composer.home.group }}"
+    path: "{{ swinxy.php.composer.home.path }}"
+    owner: "{{ swinxy.php.composer.home.user }}"
+    group: "{{ swinxy.php.composer.home.group }}"
     state: directory
 
 - name: Add auth.json
   template:
     src: composer/auth.json.j2
-    dest: "{{ khaos.php.composer.home.path }}/auth.json"
+    dest: "{{ swinxy.php.composer.home.path }}/auth.json"
   vars:
-    basic: "{{ khaos.php.composer.auth.basic }}"
-  when: khaos.php.composer.auth.basic is defined
+    basic: "{{ swinxy.php.composer.auth.basic }}"
+  when: swinxy.php.composer.auth.basic is defined

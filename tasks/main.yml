@@ -17,4 +17,4 @@
 
 - name: setup php-fpm supervisor service
   include: supervisor.yml
-  when: khaos.container == true
+  when: swinxy.container == true

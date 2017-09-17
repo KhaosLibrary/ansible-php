@@ -1,5 +1,5 @@
 ---
-khaos:
+swinxy:
   php:
     package_map:
       cli: php7.0-cli

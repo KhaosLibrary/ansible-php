@@ -1,5 +1,5 @@
 ---
-khaos:
+swinxy:
   container: false
   php:
     version: 7.0

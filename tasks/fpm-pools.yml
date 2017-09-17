@@ -6,4 +6,4 @@
   vars:
     pool: "{{ item }}"
     config: "{{ item.config }}"
-  with_items: "{{ khaos.php.fpm.pools }}"
+  with_items: "{{ swinxy.php.fpm.pools }}"
