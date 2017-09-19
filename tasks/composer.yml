@@ -43,3 +43,5 @@
   vars:
     basic: "{{ php.composer.auth.basic }}"
   when: php.composer.auth.basic is defined
+  tags:
+    - configuration
