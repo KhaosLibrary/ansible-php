@@ -1,34 +1,33 @@
 ---
-swinxy:
-  container: false
-  php:
-    version: 7.0
-    extensions:
-      - xml
-      - gd
-      - mysql
-      - xdebug
-      - opcache
-      - zip
-      - mcrypt
-      - curl
-      - intl
-      - mbstring
-    composer:
-      update: true
-      path: /usr/local/bin/composer
-      home:
-        path: /var/www/.composer
-        user: www-data
-        group: www-data
-      auth:
-        # basic:
-        #   - url: repo.example.com
-        #     username: <username>
-        #     password: <password>
-    fpm:
-      pools:
-        - name: www
-          config:
-            user: www-data
-            group: www-data
+container: false
+php:
+  version: 7.0
+  extensions:
+    - xml
+    - gd
+    - mysql
+    - xdebug
+    - opcache
+    - zip
+    - mcrypt
+    - curl
+    - intl
+    - mbstring
+  composer:
+    update: true
+    path: /usr/local/bin/composer
+    home:
+      path: /var/www/.composer
+      user: www-data
+      group: www-data
+    auth:
+      # basic:
+      #   - url: repo.example.com
+      #     username: <username>
+      #     password: <password>
+  fpm:
+    pools:
+      - name: www
+        config:
+          user: www-data
+          group: www-data

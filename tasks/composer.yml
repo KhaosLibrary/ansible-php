@@ -1,7 +1,7 @@
 ---
 
 - name: Check if Composer is installed.
-  stat: "path={{ swinxy.php.composer.path }}"
+  stat: "path={{ php.composer.path }}"
   register: _composer
 
 - name: Download Composer installer.
@@ -19,27 +19,27 @@
 
 - name: Move Composer into globally-accessible location.
   when: not _composer.stat.exists
-  command: mv /tmp/composer.phar {{ swinxy.php.composer.path }}
+  command: mv /tmp/composer.phar {{ php.composer.path }}
   args:
-    creates: swinxy.php.composer.path
+    creates: php.composer.path
 
 - name: Update Composer to latest version (if configured).
-  command: php {{ swinxy.php.composer.path }} self-update
+  command: php {{ php.composer.path }} self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
-  when: swinxy.php.composer.update
+  when: php.composer.update
 
 - name: Ensure composer directory exists.
   file:
-    path: "{{ swinxy.php.composer.home.path }}"
-    owner: "{{ swinxy.php.composer.home.user }}"
-    group: "{{ swinxy.php.composer.home.group }}"
+    path: "{{ php.composer.home.path }}"
+    owner: "{{ php.composer.home.user }}"
+    group: "{{ php.composer.home.group }}"
     state: directory
 
 - name: Add auth.json
   template:
     src: composer/auth.json.j2
-    dest: "{{ swinxy.php.composer.home.path }}/auth.json"
+    dest: "{{ php.composer.home.path }}/auth.json"
   vars:
-    basic: "{{ swinxy.php.composer.auth.basic }}"
-  when: swinxy.php.composer.auth.basic is defined
+    basic: "{{ php.composer.auth.basic }}"
+  when: php.composer.auth.basic is defined

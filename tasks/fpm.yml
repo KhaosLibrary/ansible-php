@@ -2,7 +2,7 @@
 
 - name: install php-fpm
   package:
-    name: "{{ swinxy.php.package_map['fpm'] }}"
+    name: "{{ php.package_map['fpm'] }}"
 
 # Installing php-fpm does not always create this directory so we need to
 # make sure it is present.

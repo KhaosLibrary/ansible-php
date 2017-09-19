@@ -1,17 +1,16 @@
 ---
-swinxy:
-  php:
-    package_map:
-      cli: php7.0-cli
-      fpm: php7.0-fpm
-    extension_package_map:
-      xml: php7.0-xml
-      gd: php7.0-gd
-      mysql: php7.0-mysql
-      xdebug: php-xdebug
-      opcache: php7.0-opcache
-      zip: php7.0-zip
-      mcrypt: php7.0-mcrypt
-      curl: php7.0-curl
-      intl: php7.0-intl
-      mbstring: php7.0-mbstring
+php:
+  package_map:
+    cli: php7.0-cli
+    fpm: php7.0-fpm
+  extension_package_map:
+    xml: php7.0-xml
+    gd: php7.0-gd
+    mysql: php7.0-mysql
+    xdebug: php-xdebug
+    opcache: php7.0-opcache
+    zip: php7.0-zip
+    mcrypt: php7.0-mcrypt
+    curl: php7.0-curl
+    intl: php7.0-intl
+    mbstring: php7.0-mbstring

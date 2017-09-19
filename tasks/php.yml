@@ -2,10 +2,10 @@
 
 - name: install php-cli
   package:
-    name: "{{ swinxy.php.package_map['cli'] }}"
+    name: "{{ php.package_map['cli'] }}"
 
 - name: install php extensions
   package:
-    name: "{{ swinxy.php.extension_package_map[item] }}"
+    name: "{{ php.extension_package_map[item] }}"
     state: present
-  with_items: "{{ swinxy.php.extensions }}"
+  with_items: "{{ php.extensions }}"
